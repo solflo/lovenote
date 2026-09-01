@@ -1,0 +1,50 @@
+@font-face {
+    font-family: pc-9800;
+    src: url(pc-9800.ttf);
+}
+
+* {
+    --w: 512px;
+    --bg: #111;
+    --color: #ccc;
+}
+
+body {
+    margin: 1em auto;
+    width: 640px;
+    background: var(--bg);
+    color: var(--color);
+    font-family: pc-9800;
+}
+
+#game {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-content: flex-start;
+    align-items: center;
+    padding-top: 1em;
+    border: 1px solid;
+    height: 400px;
+}
+
+#background {
+    background-color: grey;
+    width: var(--w);
+    height: 300px;
+}
+
+#sprite {
+    width: 250px;
+    height: 250px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+
+#script {
+    width: var(--w);
+}

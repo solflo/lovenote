@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>love letter js</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <script src="loveletter.js"></script>
+  <script src="conf.js"></script>
+
+  <noscript>
+    <style>
+      body {
+        font-size: 200%;
+        margin: 2em auto; 
+        max-width: 800px;
+        text-shadow: 0px 0px 5px;
+      }
+
+      a {
+        filter: brightness(1.5);
+      }
+    </style>
+  </noscript>
+
+</head>
+
+<body id="body" onload="readyStory()">
+    <noscript>this vn needs javascript to run. enable it to read, or <a href="../">go back</a>.</noscript>
+
+    <div class="gamebody" id='game'>
+        <div id="background">
+            <div id="sprite"></div>
+        </div>
+        <div id="script">
+            <p id="dialog">love letter engine</p>
+        </div>
+    </div>
+    
+    <script>
+      if (window.location.protocol.startsWith('file')) {
+        document.body.innerHTML = `Videotome must run on a local server or be uploaded to a website to function.
+        Check README.txt for more information.`
+      }
+    </script>
+</body>
+
+</html>

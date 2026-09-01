@@ -1,0 +1,72 @@
+# love letter engine
+
+well so this here is a tiny engine for kinetic visual novels. the focus is in easy and fast writing without the temptation to scope creep and complicate things with features, as well as keeping file sizes small and cute. the demo game appimage, for example, is just under 5mb, and i'm pretty sure most of that is the bundled font.
+
+inspired by freya campbell's [videotome](https://communistsister.itch.io/videotome), written in love2d by [solflo](https://solflo.neocities.org/).
+
+it's currently on v1.2.x and rather janky. it was originally written in under 48 hours by someone who's never touched lua before. it'll be eternally kinda janky obvi but i have been tweaking things here and there as i use the thing and need features for myself (i already added sprite movement which i don't even really use [^1] and i'd love pixel-perfect scaling... and i am not using a library for that.). but _minification is the point_ and i've already scope crept with sprite positioning so don't hold your breath.
+
+[^1]: see that's the problem with adding features: they start asking for other features. this or multiple sprite slots wouldn't have crossed my mind if i'd stuck with a single image slot, for the background!
+
+## using
+
+- script goes in `script.txt`
+- images and audio go in their respective folders (or not, this isn't automated. organize as you will)
+- configuration is in `conf.lua`
+- engine is `main.lua`. any fancier changes go there
+- `wordcounter.lua` is a helper tool, not really part of the engine. it gives a reasonably accurate word count of the script with syntax stripped. it's not part of the engine and needs lua, run with `lua wordcounter.lua`
+
+oh and you'd better install [löve](https://www.love2d.org/) for testing, duh. i use it by opening the terminal in the directory and running `love .`.
+
+i've also made a [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for vscodium / vscode, if you wanna! and there's a [cookbook](https://github.com/solflo/loveletter/wiki) with hacks and tips.
+
+### syntax
+
+- all commands are preceded by `!`, one command per line
+- `!BG name` displays an image at a fixed position. can be hidden with `!BG hide`
+- `!SPR name` (sprite) goes on top. can be positioned with `!SPR name x100 y100` (either coordinate can be ommited). can be hidden with `!SPR hide`
+- if changing positions of a sprite already on screen, it'll linearly move between positions by default. this is a little janky. going `!SPR hide` before the new `!SPR name` will change positions instantly. i have not tested this extensively 
+- `!MUS name` plays looping audio. can be stopped with `!MUS stop`
+- `!SFX name` plays audio once and can't be stopped
+- `!name` prefixes the line with a nametag, and changes its color
+- `!--` comments out the line
+
+### building
+
+uh you're on your own there but [makelove](https://github.com/pfirsich/makelove) is very straightforward, at least on linux (and probably wsl too). love.js is hiiiideous out of the box but you can't win them all. i'm not making a template, but it's pretty easy to adjust things so it looks decent as an itch embed.
+
+## playing
+
+- `enter`, `down arrow`, `left click` and `scroll down` advance text
+- `up arrow` and `scroll up` display previous text. this won't affect images or audio
+- `a` toggles auto. `1 / 2 / 3` control speed (slow, default, fast)
+- `f` toggles fullscreen
+- `m` toggles mute
+- `esc` closes the game
+
+you can also take a screenshot with `f8`. this is mostly as a dev aid. löve is gonna save this to some fuckass location, so the command also prints the path to the console. on linux that's `~/.local/share/love/PROJECTNAME`.
+
+## known errors
+
+ok so troubleshooting a love letter game is mostly just rereading the script to make sure you haven't fucked up. here are some specific fuck ups i've made:
+
+### "attempted to index global 'currentSfx' (a nil value)"
+
+doesn't have to be an sfx. caused by calling an asset that doesn't exist / isn't declared. double check `script.txt` and `conf.lua` for typos.
+
+this could be handled by the engine checking whether `currentSfx == nil` and gracefully carrying on, but the obvious error is more functional since it forces you to handle your mistake. this could in turn be handled by having a toggleable debug mode, and now you see the scope-creeping mindset in action. so just reread the script.
+
+### previous errors
+
+keeping these for reference but these shouldn't happen anymore.
+
+#### as of v1.2.7
+
+- __crash at game end on auto__: i'm not too sure why this was happening tbh, the logic seemed sound. but it's been fixed with my one hammer (`if ~= nil`)
+
+#### as of v1.2.5
+
+- __"bad agument #1 to 'match' (string expected, got nil)"__: caused by the final line of the script being a comment.
+- __random dialogue not being colored__: caused by having a comment directly before the line.
+
+comment-related errors were caused by a missing `return` in that syntax check, so the function kept going instead of restarting.
