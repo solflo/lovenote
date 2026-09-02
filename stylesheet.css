@@ -1,12 +1,12 @@
-@font-face {
+/* @font-face {
     font-family: pc-9800;
     src: url(pc-9800.ttf);
-}
+} */
 
 * {
     --w: 512px;
-    --bg: #111;
-    --color: #ccc;
+    --bg: #373b44;
+    --color: #fff;
 }
 
 body {
@@ -14,18 +14,18 @@ body {
     width: 640px;
     background: var(--bg);
     color: var(--color);
-    font-family: pc-9800;
+    font-family: monospace;
 }
 
 #game {
-    background: var(--bg);
+    background: black;
 
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
     justify-content: center;
     align-content: flex-start;
     align-items: center;
+    
     padding-top: 1em;
     border: 1px solid;
     height: 400px;
@@ -52,6 +52,6 @@ body {
     width: var(--w);
 }
 
-.dialog {
-    color: pink;
+.dialog, a {
+    color: #9badb7;
 }

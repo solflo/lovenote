@@ -54,10 +54,9 @@ function parseStory() {
 
 function readyStory() {
 
-    // get the story from story.txt and turn it into array
-    parseStory();
     makeMusicPlayers();
     cacheIMGs();
+    parseStory();
     
     // progress events
     document.addEventListener('keyup', logKey);
@@ -188,9 +187,10 @@ function parseTags(str) {
     };
     
     if (SYNTAX.MUS.test(str) == true) {
-        // let curMUS = str.replace(SYNTAX.MUS, "");
-        // var MUStarget;
-        // MUStarget = curMUS;
+        let curMUS = str.replace(SYNTAX.MUS, "");
+        var MUStarget;
+        MUStarget = curMUS;
+        console.log(document.getElementById('MUStarget'));
         // document.getElementById('MUStarget').setAttribute("loop", 1);
         removeLine();
         return;
