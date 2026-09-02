@@ -1,12 +1,11 @@
-// ------------------------------------------------------
-// ------------------------------------------------------
-// --- LOVE LETTER ENGINE JS ----------------------------
-// --------------------- v. 0.1 -------------------------
-// ------------------------------------------------------
+// ////////////////////////
+// /// LOVE NOTE ENGINE ///
+// ////////////// v. 0.1 //
+// ////////////////////////
 
 //#region regex
 const SYNTAX = {
-    CHAR: /!([a-zA-Z]+) /,
+    CHAR: /^!([a-zA-Z]+) /,
     BG: /^!BG /,
     SPR: /^!SPR /,
     MUS: /^!MUS /,
@@ -20,8 +19,10 @@ const SYNTAX = {
 var currentLine = 0;
 var storyArray = [];
 var debugLogs = true;
+var isSyntax = false;
 const startingMessage = "whatever";
 const cache = {};
+const DIVIDER = " | "
 //#endregion
 
 
@@ -48,7 +49,7 @@ function parseStory() {
 };
 
 
-function readyStory () {
+function readyStory() {
 
     // get the story from story.txt and turn it into array
     parseStory();
@@ -57,7 +58,7 @@ function readyStory () {
     
     // progress events
     document.addEventListener('keyup', logKey);
-    document.onclick = function() {progress();};
+    document.getElementById("game").onclick = function() {progress();};
 
     console.log('action!');
 };
@@ -65,7 +66,7 @@ function readyStory () {
 
 
 //#region asset creation
-function cacheIMGs () {
+function cacheIMGs() {
 
     if (debugLogs) console.groupCollapsed("images found");
     for (let [key, value] of Object.entries(IMGS)) {
@@ -85,7 +86,7 @@ function cacheIMGs () {
 };
 
 
-function makeMusicPlayers () {
+function makeMusicPlayers() {
 
     if (debugLogs) console.groupCollapsed("sounds found");
     for (let [key, value] of Object.entries(AUDIO)) {
@@ -132,49 +133,73 @@ function progress() {
 
 //#region syntax
 function parseTags(str) {
+
     if (SYNTAX.COMMENT.test(str) == true) { 
-        // if (debugLogs) console.log('comment: ', str);
         removeLine();
-    } else if (SYNTAX.BG.test(str) == true) { 
+        return;
+    };
+    
+    if (SYNTAX.BG.test(str) == true) { 
         let curBG = str.replace(SYNTAX.BG, "");
         var BGtarget;
         if (curBG == "hide") {
             BGtarget = "";
         } else {
-            BGtarget = "url('" + IMGS[curBG] +"')";
+            BGtarget = "url('./" + IMGS[curBG] +"')";
         };
         document.getElementById('background').style.backgroundImage = BGtarget;
         removeLine();
-    } else if (SYNTAX.SPR.test(str) == true) { 
+        return;
+    };
+    
+    if (SYNTAX.SPR.test(str) == true) { 
         let curSPR = str.replace(SYNTAX.SPR, "");
         var SPRtarget;
         if (curSPR == "hide") {
             SPRtarget = "";
         } else {
-            SPRtarget = "url('" + IMGS[curSPR] +"')";
-        };
-        document.getElementById('sprite').style.backgroundImage = SPRtarget;
+            SPRtarget = "url('./" + IMGS[curSPR] +"')";
+        };        
+        document.getElementById('sprite').style.backgroundImage = SPRtarget;        
         removeLine();
-        // this is buggy and idk why
-        // using !SPR hide will also hide the bg. the opposite is not true.
-        // so it obv has to do with the flow of the code but idk whyyyy
-    } else if (SYNTAX.MUS.test(str) == true) {
-        let curMUS = str.replace(SYNTAX.MUS, "");
-        var MUStarget;
-        MUStarget = curMUS;
-        document.getElementById('MUStarget').setAttribute("loop", 1);
+        return;
+    };
+    
+    if (SYNTAX.MUS.test(str) == true) {
+        // let curMUS = str.replace(SYNTAX.MUS, "");
+        // var MUStarget;
+        // MUStarget = curMUS;
+        // document.getElementById('MUStarget').setAttribute("loop", 1);
         removeLine();
-    } else {
-        document.getElementById('dialog').innerText = str;
-        currentLine++;
-    }
+        return;
+    };
+    
+    if (SYNTAX.CHAR.test(str) == true) {
+        let nametag = str.match(SYNTAX.CHAR)[0]; // the first instance of the match        
+        chara = nametag.replace(/^!/, ""); // grabs just the tag without !
+        chara = chara.trim();
+        // nametag = "'" + nametag + "'";
+        // console.log(nametag);
+
+        // chara = CHARS[chara];
+
+        // if (chara) {
+        //     str = str.replace()
+        // } else {
+        //     console.warn("warning: character tag not recognised. check it's set up correctly in conf.js")
+        // };
+
+        str = str.replace(nametag, chara + DIVIDER);
+        document.getElementById('dialog').classList.add("dialog");
+    };
+    
+    document.getElementById('dialog').innerText = str;
+    currentLine++;
 };
 
 
 function removeLine(){
     storyArray.splice(currentLine, 1);
-    // if (debugLogs) console.info(storyArray);
-    currentLine++;
     progress();
 };
 //#endregion

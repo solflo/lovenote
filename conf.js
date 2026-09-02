@@ -1,8 +1,10 @@
+// NAMETAGS
+
 const CHARS = {
     SOL: "the dev",
 }
 	
-// --- IMAGES ---------------
+// IMAGES
 
 const IMGS = {
     background: "images/placeholder-bg.png",
@@ -11,7 +13,7 @@ const IMGS = {
 }
 
 
-// --- AUDIO ----------------
+// AUDIO
 
 const AUDIO = {
     placeholder: "audio/oiter loop.ogg",
