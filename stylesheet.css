@@ -18,6 +18,8 @@ body {
 }
 
 #game {
+    background: var(--bg);
+
     display: flex;
     flex-wrap: wrap;
     /* flex-direction: column; */
@@ -30,7 +32,8 @@ body {
 }
 
 #background {
-    background-color: grey;
+    background-color: transparent;
+    background-repeat: no-repeat;
     width: var(--w);
     height: 300px;
 }

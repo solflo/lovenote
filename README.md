@@ -11,19 +11,19 @@ note scripts work perfectly in letter. the opposite might not be the case, and b
 - script goes in `script.txt`
 - images and audio go in their respective folders (or not, this isn't automated. organize as you will)
 - configuration is in `conf.js`
-- engine is `loveletter.js`. any fancier changes go there
+- engine is `lovenote.js`. any fancier changes go there
 
 the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for vscodium / vscode obviously still works.
 
 ### syntax
 
-- all commands are preceded by `!`, one command per line
-- `!BG name` displays an image at a fixed position. can be hidden with `!BG hide`
-- `!SPR name` (sprite) goes on top. can be hidden with `!SPR hide`
-- `!MUS name` plays looping audio. can be stopped with `!MUS stop`
-- `!SFX name` plays audio once and can't be stopped
-- `!name` prefixes the line with a nametag, and changes its color
-- `!--` comments out the line
+- [x] all commands are preceded by `!`, one command per line
+- [x] `!BG name` displays an image at a fixed position. can be hidden with `!BG hide`
+- [x] `!SPR name` (sprite) goes on top, at (possibly different) fixed position. can be hidden with `!SPR hide`
+- [ ] `!MUS name` plays looping audio. can be stopped with `!MUS stop`
+- [ ] `!SFX name` plays audio once and can't be stopped
+- [x] `!name` prefixes the line with a nametag, and changes its color
+- [x] `!--` comments out the line
 
 ### building
 

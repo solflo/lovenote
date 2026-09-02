@@ -1,7 +1,11 @@
-// ////////////////////////
-// /// LOVE NOTE ENGINE ///
-// ////////////// v. 0.1 //
-// ////////////////////////
+// ________________________
+// ________________________
+// ___ LOVE NOTE ENGINE ___
+// ______________ v. 0.1 __
+// ________________________
+
+
+// love note is like. a toy version of love letter. check the readme.me or https://github.com/solflo/lovenote
 
 //#region regex
 const SYNTAX = {
@@ -19,7 +23,6 @@ const SYNTAX = {
 var currentLine = 0;
 var storyArray = [];
 var debugLogs = true;
-var isSyntax = false;
 const startingMessage = "whatever";
 const cache = {};
 const DIVIDER = " | "
@@ -114,7 +117,26 @@ function logKey(e) {
         // space / enter / down arrow, progress
         progress();
     };
+
+    if (e.key == "f") {
+        var window = document.documentElement;
+        toggleFullscreen(window);
+    };
 };
+//#endregion
+
+
+//#region fullscreen
+// making this a function in case i also want a button or sth (for mobile)
+function toggleFullscreen(window) {
+  if (!document.fullscreenElement) {
+    // If the document is not in full screen mode make it so
+    window.requestFullscreen();
+  } else {
+    // Otherwise exit the full screen
+    document.exitFullscreen?.();
+  }
+}
 //#endregion
 
 
@@ -176,21 +198,14 @@ function parseTags(str) {
     
     if (SYNTAX.CHAR.test(str) == true) {
         let nametag = str.match(SYNTAX.CHAR)[0]; // the first instance of the match        
-        chara = nametag.replace(/^!/, ""); // grabs just the tag without !
+        let chara = nametag.replace(/^!/, ""); // grabs just the tag without !
         chara = chara.trim();
-        // nametag = "'" + nametag + "'";
-        // console.log(nametag);
-
-        // chara = CHARS[chara];
-
-        // if (chara) {
-        //     str = str.replace()
-        // } else {
-        //     console.warn("warning: character tag not recognised. check it's set up correctly in conf.js")
-        // };
+        chara = CHARS[chara];
 
         str = str.replace(nametag, chara + DIVIDER);
         document.getElementById('dialog').classList.add("dialog");
+
+        // curiously nothing at all happens if the tag isn't in the CHARS object... not investigating.
     };
     
     document.getElementById('dialog').innerText = str;
