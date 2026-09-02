@@ -4,7 +4,7 @@
 // ______________ v. 1.0 __
 // ________________________
 
-// love note is a toy version of love letter. check the readme or https://github.com/solflo/lovenote for more info.
+// love note is a toy version of love letter. check the readme or https://solflo.neocities.org/etc/loveletter/lovenote.html for more info.
 // some code here is taken straight from freya campbell's [videotome](https://communistsister.itch.io/videotome). 
 // since that's under a Attribution-NonCommercial-ShareAlike licence, it's wise to say that so is love note!
 // (vt also uses the "CC BY-NC-ND" shorthand, but that's contradictory and i believe a typo? since it goes on to explain:
