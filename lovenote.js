@@ -230,7 +230,7 @@ function parseTags(str) {
         // curiously nothing at all happens if the tag isn't in the CHARS object... not investigating.
     }
     
-    document.getElementById('dialog').innerText = str;
+    document.getElementById('dialog').innerText = str; // innerText sanitizes inputs. alt use innerHTML
     currentLine++;
 };
 
