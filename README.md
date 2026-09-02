@@ -17,13 +17,13 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 
 ### syntax
 
-- [x] all commands are preceded by `!`, one command per line
-- [x] `!BG name` displays an image at a fixed position. can be hidden with `!BG hide`
-- [x] `!SPR name` (sprite) goes on top, at (possibly different) fixed position. can be hidden with `!SPR hide`
-- [ ] `!MUS name` plays looping audio. can be stopped with `!MUS stop`
-- [ ] `!SFX name` plays audio once and can't be stopped
-- [x] `!name` prefixes the line with a nametag, and changes its color
-- [x] `!--` comments out the line
+- all commands are preceded by `!`, one command per line
+- `!BG name` displays an image at a fixed position. can be hidden with `!BG hide`
+- `!SPR name` (sprite) goes on top, at (possibly different) fixed position. can be hidden with `!SPR hide`
+- `!MUS name` plays looping audio. can be stopped with `!MUS stop`
+- `!SFX name` plays audio once
+- `!name` prefixes the line with a nametag, and changes its color
+- `!--` comments out the line
 
 ### building
 
@@ -33,6 +33,7 @@ love note does not need to be built, the source (loose files in the directory) i
 
 - `enter`, `down arrow` and `left click` advance text
 - `f` toggles fullscreen
+- `m` mutes / unmutes
 
 ## known errors
 

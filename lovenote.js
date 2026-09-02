@@ -1,7 +1,7 @@
 // ________________________
 // ________________________
 // ___ LOVE NOTE ENGINE ___
-// ______________ v. 0.1 __
+// ______________ v. 1.0 __
 // ________________________
 
 
@@ -24,6 +24,7 @@ const SYNTAX = {
 var currentLine = 0;
 var storyArray = [];
 var debugLogs = true;
+var isMuted = false;
 const cache = {};
 const DIVIDER = " | "
 //#endregion
@@ -34,20 +35,21 @@ async function getFile(fileURL){
     let fileContent = await fetch(fileURL);
     fileContent = await fileContent.text();
     return fileContent;
-};
+}
 
 
 function parseStory() {
     console.log('getting file');
+    let ms = (new Date).getTime(); // epoch time, used to always refresh the script.txt
     // Passing file url 
-    getFile('script.txt').then(content =>{
+    getFile('script.txt?=' + ms).then(content =>{
         storyArray = content.trim().split("\n");
         if (debugLogs) console.info(storyArray);
     }).catch(error =>{
         console.log(error);
         console.error("Unable to load script.txt file.");
     });
-};
+}
 
 
 function readyStory() {
@@ -61,7 +63,7 @@ function readyStory() {
     document.getElementById("game").onclick = function() {progress();};
 
     console.log('action!');
-};
+}
 //#endregion
 
 
@@ -83,7 +85,7 @@ function cacheIMGs() {
     
     if (debugLogs) console.info(cache);
 
-};
+}
 
 
 function makeMusicPlayers() {
@@ -105,28 +107,32 @@ function makeMusicPlayers() {
     if (debugLogs) console.groupEnd();
     console.log('music loaded');
 
-};
+}
 //#endregion
 
 
 //#region keys
 function logKey(e) {    
     if (e.key == "Enter" || e.key == " " || e.key == "ArrowDown") {
-        // space / enter / down arrow, progress
         progress();
-    };
+    }
 
     if (e.key == "f") {
         let game = document.getElementById("game"); // this looks a little goofy
         // let game = document.documentElement;
         toggleFullscreen(game);
-    };
-};
+    }
+
+    if (e.key == "m") {
+        isMuted = !isMuted;
+        mute();
+    }
+}
 //#endregion
 
 
-//#region fullscreen
-// making this a function in case i also want a button or sth (for mobile)
+//#region meta controls
+// making these functions in case i also want a button or sth (for mobile)
 function toggleFullscreen(game) {
   if (!document.fullscreenElement) {
     // If the document is not in full screen mode make it so
@@ -135,6 +141,12 @@ function toggleFullscreen(game) {
     // Otherwise exit the full screen
     document.exitFullscreen?.();
   }
+}
+
+
+function mute() {
+    let sounds = document.getElementsByTagName('audio');
+    for(i=0; i<sounds.length; i++) sounds[i].muted = isMuted;
 }
 //#endregion
 
@@ -147,6 +159,8 @@ function progress() {
     } else if (currentLine == storyArray.length) {
         str = "<EOF>"
         parseTags(str);
+        musicPlayer("stop");
+        sfxPlayer("stop");
     }
 };
 //#endregion
@@ -158,11 +172,11 @@ function parseTags(str) {
     if (SYNTAX.COMMENT.test(str) == true) { 
         removeLine();
         return;
-    };
+    }
     
     if (SYNTAX.BG.test(str) == true) { 
         let curBG = str.replace(SYNTAX.BG, "");
-        var BGtarget;
+        let BGtarget;
         if (curBG == "hide") {
             BGtarget = "";
         } else {
@@ -171,11 +185,11 @@ function parseTags(str) {
         document.getElementById('background').style.backgroundImage = BGtarget;
         removeLine();
         return;
-    };
+    }
     
     if (SYNTAX.SPR.test(str) == true) { 
         let curSPR = str.replace(SYNTAX.SPR, "");
-        var SPRtarget;
+        let SPRtarget;
         if (curSPR == "hide") {
             SPRtarget = "";
         } else {
@@ -184,7 +198,7 @@ function parseTags(str) {
         document.getElementById('sprite').style.backgroundImage = SPRtarget;        
         removeLine();
         return;
-    };
+    }
     
     if (SYNTAX.MUS.test(str) == true) {
         let curMUS = str.replace(SYNTAX.MUS, "");
@@ -192,7 +206,7 @@ function parseTags(str) {
         musicPlayer(track);
         removeLine();
         return;
-    };
+    }
 
     if (SYNTAX.SFX.test(str) == true) {
         let curSFX = str.replace(SYNTAX.SFX, "");
@@ -200,7 +214,7 @@ function parseTags(str) {
         sfxPlayer(track);
         removeLine();
         return;
-    };
+    }
     
     if (SYNTAX.CHAR.test(str) == true) {
         let nametag = str.match(SYNTAX.CHAR)[0]; // the first instance of the match        
@@ -212,7 +226,7 @@ function parseTags(str) {
         document.getElementById('dialog').classList.add("dialog");
 
         // curiously nothing at all happens if the tag isn't in the CHARS object... not investigating.
-    };
+    }
     
     document.getElementById('dialog').innerText = str;
     currentLine++;
@@ -222,7 +236,7 @@ function parseTags(str) {
 function removeLine(){
     storyArray.splice(currentLine, 1);
     progress();
-};
+}
 //#endregion
 
 
@@ -232,28 +246,39 @@ function musicPlayer (track) {
     let sounds = document.getElementsByTagName('audio');
     for(i=0; i<sounds.length; i++) sounds[i].pause();
 
+    if (track == "stop") {
+        if (debugLogs) console.info('music stopped');
+        return;
+    }
+
     let player = document.getElementById(track);
     if (player == null) {
         console.warn("Could not load music with tag " + track + ", did you forget to add it to assets.js?")
     } else {
-        player.setAttribute("loop", true);
+        // player.setAttribute("loop", true);
+        player.loop = true;
         player.play();
         if (debugLogs) console.info('playing music ' + track);
     }
 
-};
+}
 
 function sfxPlayer (track) {
+
+    if (track == "stop") {
+        if (debugLogs) console.info('sfx stopped');
+        return;
+    }
 
     let player = document.getElementById(track);
     if (player == null) {
         console.warn("Could not load sfx with tag " + track + ", did you forget to add it to assets.js?")
     } else {
         player.currentTime = 0;
-        player.setAttribute("loop", false);
+        player.loop = false;
         player.play();
         if (debugLogs) console.info('playing sfx ' + track);
     }
 
-};
+}
 //#endregion
