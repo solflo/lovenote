@@ -116,15 +116,12 @@ div#buttons {
 
 /* viewport responsiveness might be a bit rough... improving it is an exercise to the reader */
 @media screen and (max-width: 640px) {
-    :root {
-        --w: 100%;
-    }
-    
     body {
-        width: 100%;
+        max-width: 100%;
     }
     
     #game {
         padding: 0.5em;
+        max-width: 100%;
     }
 }
