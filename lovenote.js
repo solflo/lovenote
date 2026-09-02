@@ -24,6 +24,7 @@ const SYNTAX = {
 var currentLine = 0;
 var storyArray = [];
 var debugLogs = true;
+var loop = true;
 const cache = {};
 const DIVIDER = " | "
 //#endregion
@@ -96,6 +97,7 @@ function makeMusicPlayers() {
         newplayer.setAttribute("id", key);
         newplayer.setAttribute("src", value);
         newplayer.setAttribute("preload", "auto");
+        newplayer.setAttribute("loop", false);
         // if (key.indexOf('MUS') >= 0) {
         //    newplayer.setAttribute("loop", 1);
         // }
@@ -187,9 +189,11 @@ function parseTags(str) {
     
     if (SYNTAX.MUS.test(str) == true) {
         let curMUS = str.replace(SYNTAX.MUS, "");
-        var MUStarget;
-        MUStarget = curMUS;
-        console.log(document.getElementById('MUStarget'));
+        let track = curMUS;
+        loop = true;
+        // console.log(document.getElementById('MUStarget'));
+        // let track = curMUS[0];
+        musicPlayer(track);
         // document.getElementById('MUStarget').setAttribute("loop", 1);
         removeLine();
         return;
@@ -215,5 +219,39 @@ function parseTags(str) {
 function removeLine(){
     storyArray.splice(currentLine, 1);
     progress();
+};
+//#endregion
+
+
+//#region tag functions
+function musicPlayer (track) {
+
+    let sounds = document.getElementsByTagName('audio');
+    for(i=0; i<sounds.length; i++) sounds[i].pause();
+
+    let player = document.getElementById(track);
+    if (player == null) {
+        console.warn("Could not load music with tag " + track + ", did you forget to add it to assets.js?")
+    } else {
+        if (loop == true) {
+            player.setAttribute("loop", true);
+        };
+        player.play();
+        if (debugLogs) console.info('playing music ' + track);
+    }
+
+};
+
+function sfxPlayer (track) {
+
+    let player = document.getElementById(track);
+    if (player == null) {
+        console.warn("Could not load sfx with tag " + track + ", did you forget to add it to assets.js?")
+    } else {
+        player.currentTime = 0;
+        player.play();
+        if (debugLogs) console.info('playing sfx');
+    }
+
 };
 //#endregion

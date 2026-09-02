@@ -12,13 +12,16 @@
     <style>
       body {
         font-size: 200%;
-        margin: 2em auto; 
-        max-width: 800px;
+        margin: 2em auto;
         text-shadow: 0px 0px 5px;
       }
 
-      a {
+      a:hover {
         filter: brightness(1.5);
+      }
+
+      #game {
+        display: none;
       }
     </style>
   </noscript>
@@ -26,22 +29,22 @@
 </head>
 
 <body id="body" onload="readyStory()">
-    <noscript>this vn needs javascript to run. enable it to read, or <a href="../">go back</a>.</noscript>
+  <noscript>this vn needs javascript to run. enable it to read, or <a href="../">go back</a>.</noscript>
 
-    <div class="gamebody" id='game'>
-        <div id="background">
-            <div id="sprite"></div>
-        </div>
-        <div id="script">
-            <p id="dialog">love note engine</p>
-        </div>
-    </div>
-    
-    <script>
-      if (window.location.protocol.startsWith('file')) {
-        document.body.innerHTML = `love note must run on a server (local or online). check readme.md for more info.`
-      }
-    </script>
+  <div class="gamebody" id='game'>
+      <div id="background">
+          <div id="sprite"></div>
+      </div>
+      <div id="script">
+          <p id="dialog">love note engine</p>
+      </div>
+  </div>
+  
+  <script>
+    if (window.location.protocol.startsWith('file')) {
+      document.body.innerHTML = `love note must run on a server (local or online). check readme.md for more info.`
+    }
+  </script>
 </body>
 
 </html>
