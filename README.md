@@ -27,7 +27,7 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 
 ### building
 
-love note does not need to be built, but it can only run on a server — that is, either using something like python's http server (`python3 -m http.server`) or hosting it somewhere online like itchio or your own website.
+love note does not need to be built, the source (loose files in the directory) is the game. but it can only run on a server — that is, either using something like python's http server (`python3 -m http.server`) or hosting it somewhere online like itchio or your own website.
 
 ## playing
 

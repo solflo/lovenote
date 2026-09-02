@@ -5,7 +5,8 @@
 // ________________________
 
 
-// love note is like. a toy version of love letter. check the readme.me or https://github.com/solflo/lovenote
+// love note is a toy version of love letter. check the readme or https://github.com/solflo/lovenote for more info.
+// some code here is taken straight from freya campbell's [videotome](https://communistsister.itch.io/videotome). 
 
 //#region regex
 const SYNTAX = {
@@ -23,7 +24,6 @@ const SYNTAX = {
 var currentLine = 0;
 var storyArray = [];
 var debugLogs = true;
-const startingMessage = "whatever";
 const cache = {};
 const DIVIDER = " | "
 //#endregion
@@ -42,8 +42,6 @@ function parseStory() {
     // Passing file url 
     getFile('script.txt').then(content =>{
         storyArray = content.trim().split("\n");
-        // storyArray.splice(0, 0, "filler!")
-
         if (debugLogs) console.info(storyArray);
     }).catch(error =>{
         console.log(error);
