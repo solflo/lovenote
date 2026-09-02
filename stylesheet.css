@@ -1,14 +1,20 @@
+/* LOVE NOTE ENGINE STYLESHEET */
+
 /* @font-face {
     font-family: pc-9800;
-    src: url(pc-9800.ttf);
+    src: url(./pc-9800.ttf);
 } */
 
-* {
+/* VARIABLES */
+:root {
     --w: 512px;
     --bg: #373b44;
     --color: #fff;
+    --accent: #9badb7;
 }
 
+
+/* MAIN PAGE */
 body {
     margin: 1em auto;
     width: 640px;
@@ -17,6 +23,32 @@ body {
     font-family: monospace;
 }
 
+
+a {
+    color: var(--accent);
+}
+
+
+button {
+    font-size: 80%;
+    font-family: inherit;
+
+    border-radius: 0px;
+    background: transparent;
+    border: 1px solid;
+    color: var(--color);
+
+    padding: 0.25em;
+}
+
+div#buttons {
+    width: 100%;
+    margin: 1em auto;
+    text-align: center;
+}
+
+
+/* GAME WINDOW */
 #game {
     background: black;
     border: 1px solid;
@@ -24,33 +56,69 @@ body {
     height: 400px;
 
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     padding-top: 1em;
 }
 
+
+/* GAME IMAGES */
 #background {
     background-color: transparent;
     background-repeat: no-repeat;
+
     width: var(--w);
     height: 300px;
 }
 
 #sprite {
-    width: 250px;
-    height: 250px;
     background-color: transparent;
     background-repeat: no-repeat;
+
+    width: 250px;
+    height: 250px;
+
     position: relative;
     top: 150px;
     left: 50px;
 }
 
+
+/* GAME TEXT */
 #script {
     width: var(--w);
 }
 
-.dialog, a {
-    color: #9badb7;
+.dialog {
+    color: var(--accent);
+}
+
+
+/* MEDIA QUERIES */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #cccccc;
+    --color: #373b44;
+    --accent: #e9758e;
+  }
+
+  #game {
+    background: #fff;
+  }
+}
+
+
+/* viewport responsiveness is a bit rough... improving it is an exercise to the reader */
+@media screen and (max-width: 640px) {
+    :root {
+        --w: 100%;
+    }
+    
+    body {
+        width: 100%;
+    }
+    
+    #game {
+        padding: 0.5em;
+    }
 }

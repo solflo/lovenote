@@ -31,13 +31,18 @@
 <body id="body" onload="readyStory()">
   <noscript>this vn needs javascript to run. enable it to read, or <a href="../">go back</a>.</noscript>
 
-  <div class="gamebody" id='game'>
+  <div id='game'>
       <div id="background">
           <div id="sprite"></div>
       </div>
       <div id="script">
           <p id="dialog">love note engine</p>
       </div>
+  </div>
+
+  <div id="buttons">
+    <button id="fullscreenButton" onclick="toggleFullscreen(game);">fullscreen</button>
+    <button id="muteButton" onclick="mute();">toggle audio</button>
   </div>
   
   <script>

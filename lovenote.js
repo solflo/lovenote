@@ -4,9 +4,9 @@
 // ______________ v. 1.0 __
 // ________________________
 
-
 // love note is a toy version of love letter. check the readme or https://github.com/solflo/lovenote for more info.
 // some code here is taken straight from freya campbell's [videotome](https://communistsister.itch.io/videotome). 
+
 
 //#region regex
 const SYNTAX = {
@@ -124,7 +124,6 @@ function logKey(e) {
     }
 
     if (e.key == "m") {
-        isMuted = !isMuted;
         mute();
     }
 }
@@ -145,6 +144,7 @@ function toggleFullscreen(game) {
 
 
 function mute() {
+    isMuted = !isMuted;
     let sounds = document.getElementsByTagName('audio');
     for(i=0; i<sounds.length; i++) sounds[i].muted = isMuted;
 }
@@ -168,6 +168,8 @@ function progress() {
 
 //#region syntax
 function parseTags(str) {
+
+    document.getElementById('dialog').classList.remove("dialog");
 
     if (SYNTAX.COMMENT.test(str) == true) { 
         removeLine();
@@ -253,7 +255,7 @@ function musicPlayer (track) {
 
     let player = document.getElementById(track);
     if (player == null) {
-        console.warn("Could not load music with tag " + track + ", did you forget to add it to assets.js?")
+        console.warn("Could not load music with tag " + track + ", did you forget to add it to conf.js?")
     } else {
         // player.setAttribute("loop", true);
         player.loop = true;
@@ -262,6 +264,7 @@ function musicPlayer (track) {
     }
 
 }
+
 
 function sfxPlayer (track) {
 
@@ -272,7 +275,7 @@ function sfxPlayer (track) {
 
     let player = document.getElementById(track);
     if (player == null) {
-        console.warn("Could not load sfx with tag " + track + ", did you forget to add it to assets.js?")
+        console.warn("Could not load sfx with tag " + track + ", did you forget to add it to conf.js?")
     } else {
         player.currentTime = 0;
         player.loop = false;
