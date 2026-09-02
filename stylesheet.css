@@ -19,16 +19,15 @@ body {
 
 #game {
     background: black;
+    border: 1px solid;
+        
+    height: 400px;
 
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
+    flex-direction: column;
     align-items: center;
-    
     padding-top: 1em;
-    border: 1px solid;
-    height: 400px;
 }
 
 #background {

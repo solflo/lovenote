@@ -116,8 +116,9 @@ function logKey(e) {
     };
 
     if (e.key == "f") {
-        var window = document.documentElement;
-        toggleFullscreen(window);
+        let game = document.getElementById("game"); // this looks a little goofy
+        // let game = document.documentElement;
+        toggleFullscreen(game);
     };
 };
 //#endregion
@@ -125,10 +126,10 @@ function logKey(e) {
 
 //#region fullscreen
 // making this a function in case i also want a button or sth (for mobile)
-function toggleFullscreen(window) {
+function toggleFullscreen(game) {
   if (!document.fullscreenElement) {
     // If the document is not in full screen mode make it so
-    window.requestFullscreen();
+    game.requestFullscreen();
   } else {
     // Otherwise exit the full screen
     document.exitFullscreen?.();
