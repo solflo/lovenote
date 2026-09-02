@@ -11,7 +11,7 @@ Within, walls continued upright, bricks met neatly, floors were firm, and doors 
 silence lay steadily against the wood and stone of Hill House, and whatever walked there, walked alone.
 ...
 !SPR sprite
-!SOL hi welcome to my silly little engine
+!SOL hi welcome to my silly little engine, made even sillier and littler now!
 !SOL that's not me btw, that's sacrificial lamb and it can't speak
 !SPR sprite
 !SOL i needed something to test with though.
@@ -21,8 +21,7 @@ silence lay steadily against the wood and stone of Hill House, and whatever walk
 !SOL i even pulled out the graphics tablet to draw it.
 (they also improved the previously mouse-drawn background for this...)
 (they wanted to make a better impression with the demo game ^_^)
-(still, they couldn't manage pixel scaling or even nearest-neighbor filtering which is why things are blurry in fullscreen)
 !SOL well. i think this showed everything off nicely.
 !SOL as you can see, there isn't much to it!
-!SOL well, this demo is about to end, don't be scared by the terse <EOF> screen.
+!SOL well, this demo is about to end. the <EOF> screen is a little less terse in this version.
 !SOL ok bye! have fun!
