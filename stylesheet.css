@@ -1,9 +1,11 @@
 /* LOVE NOTE ENGINE STYLESHEET */
 
+
 /* @font-face {
     font-family: pc-9800;
     src: url(./pc-9800.ttf);
 } */
+
 
 /* VARIABLES */
 :root {
@@ -23,12 +25,12 @@ body {
     font-family: monospace;
 }
 
-
 a {
     color: var(--accent);
 }
 
 
+/* BUTTONS */
 button {
     font-size: 80%;
     font-family: inherit;
@@ -112,7 +114,7 @@ div#buttons {
 }
 
 
-/* viewport responsiveness is a bit rough... improving it is an exercise to the reader */
+/* viewport responsiveness might be a bit rough... improving it is an exercise to the reader */
 @media screen and (max-width: 640px) {
     :root {
         --w: 100%;
