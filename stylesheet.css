@@ -103,9 +103,9 @@ div#buttons {
 /* MEDIA QUERIES */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #cccccc;
+    --bg: #847e87;
     --color: #373b44;
-    --accent: #e9758e;
+    --accent: #7c040f;
   }
 
   #game {
