@@ -24,7 +24,6 @@ const SYNTAX = {
 var currentLine = 0;
 var storyArray = [];
 var debugLogs = true;
-var loop = true;
 const cache = {};
 const DIVIDER = " | "
 //#endregion
@@ -190,11 +189,15 @@ function parseTags(str) {
     if (SYNTAX.MUS.test(str) == true) {
         let curMUS = str.replace(SYNTAX.MUS, "");
         let track = curMUS;
-        loop = true;
-        // console.log(document.getElementById('MUStarget'));
-        // let track = curMUS[0];
         musicPlayer(track);
-        // document.getElementById('MUStarget').setAttribute("loop", 1);
+        removeLine();
+        return;
+    };
+
+    if (SYNTAX.SFX.test(str) == true) {
+        let curSFX = str.replace(SYNTAX.SFX, "");
+        let track = curSFX;
+        sfxPlayer(track);
         removeLine();
         return;
     };
@@ -223,7 +226,7 @@ function removeLine(){
 //#endregion
 
 
-//#region tag functions
+//#region audio functions
 function musicPlayer (track) {
 
     let sounds = document.getElementsByTagName('audio');
@@ -233,9 +236,7 @@ function musicPlayer (track) {
     if (player == null) {
         console.warn("Could not load music with tag " + track + ", did you forget to add it to assets.js?")
     } else {
-        if (loop == true) {
-            player.setAttribute("loop", true);
-        };
+        player.setAttribute("loop", true);
         player.play();
         if (debugLogs) console.info('playing music ' + track);
     }
@@ -249,8 +250,9 @@ function sfxPlayer (track) {
         console.warn("Could not load sfx with tag " + track + ", did you forget to add it to assets.js?")
     } else {
         player.currentTime = 0;
+        player.setAttribute("loop", false);
         player.play();
-        if (debugLogs) console.info('playing sfx');
+        if (debugLogs) console.info('playing sfx ' + track);
     }
 
 };
