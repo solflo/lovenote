@@ -6,6 +6,10 @@
 
 // love note is a toy version of love letter. check the readme or https://github.com/solflo/lovenote for more info.
 // some code here is taken straight from freya campbell's [videotome](https://communistsister.itch.io/videotome). 
+// since that's under a Attribution-NonCommercial-ShareAlike licence, it's wise to say that so is love note!
+// (vt also uses the "CC BY-NC-ND" shorthand, but that's contradictory and i believe a typo? since it goes on to explain:
+// "This license lets others remix, adapt, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms.")
+// in any case: do as you will with love note basically, but selling it in any form is fucking gauche.
 
 
 //#region regex
