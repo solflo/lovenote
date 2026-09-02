@@ -2,7 +2,9 @@
 
 love note is a toy visual novel engine, kinda reimplementing [love letter](https://solflo.neocities.org/etc/loveletter.html) in javascript, but with less stuff. it's intended as an alternative to (but not a replacement for) lovejs. it's also an alternative engine if you don't have access to love2d.
 
-notes (scripts written for love note) work perfectly in love letter. the opposite might not be the case, and bugs may be strange and arcane. proceed with caution. like the name implies, love note is meant for simpler and shorter vns. it might not be meant for use at all, honestly.
+notes are also like 1mb lighter than letters built as html. in 2026 this is hardly relevant, but it's cute! plus every note is a straightforward redistribution of the engine, which isn't the case for games built with lovejs. which is also cute!
+
+note scripts work perfectly in letter. the opposite might not be the case, and bugs may be strange and arcane. proceed with caution. like the name implies, love note is meant for simpler and shorter vns. it might not be meant for use at all, honestly.
 
 ## using
 
