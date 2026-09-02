@@ -41,6 +41,10 @@ button {
     padding: 0.25em;
 }
 
+button:hover {
+    color: var(--accent);
+}
+
 div#buttons {
     width: 100%;
     margin: 1em auto;

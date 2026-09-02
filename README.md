@@ -6,6 +6,7 @@ notes are also like 1mb lighter than letters built as html. in 2026 this is hard
 
 note scripts work perfectly in letter. the opposite might not be the case, and bugs may be strange and arcane. proceed with caution. like the name implies, love note is meant for simpler and shorter vns. it might not be meant for use at all, honestly, but it was a fun exercise for me.
 
+
 ## using
 
 - script goes in `script.txt`
@@ -14,6 +15,7 @@ note scripts work perfectly in letter. the opposite might not be the case, and b
 - engine is `lovenote.js`. any fancier changes go there
 
 the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for vscodium / vscode obviously still works.
+
 
 ### syntax
 
@@ -25,12 +27,12 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 - `!name` prefixes the line with a nametag, and changes its color
 - `!--` comments out the line
 
+
 ### building
 
 love note does not need to be built, the source (loose files in the directory) is the game. but it can only run on a server — that is, either using something like python's http server (`python3 -m http.server`) or hosting it somewhere online like itchio or your own website.
 
 don't forget to put your game title in `index.html`. the game's visuals can be customized in `stylesheet.css`. this allows for things like media queries for light / dark modes, or better mobile compatibility / responsiveness.
-
 
 
 ## playing
@@ -39,6 +41,7 @@ don't forget to put your game title in `index.html`. the game's visuals can be c
 - `f` toggles fullscreen
 - `m` mutes / unmutes
 
+
 ## known errors
 
-love note feels hacky, even more so than letter, but with less moving parts i don't think there's anything too grave.
+love note feels hacky, even more so than letter, but with less moving parts i don't think there's anything too grave. you heard me right folks: right now there are no errors whatsoever. ☝ that i know of.
