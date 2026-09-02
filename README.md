@@ -27,6 +27,8 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 - `!name` prefixes the line with a nametag, and changes its color
 - `!--` comments out the line
 
+love note sanitizes the script so inline html gets treated as normal text. this is so you don't have any problems when using things like \<lesser and greater than symbols\> (also helps with compatibility!), but if you do wanna use those then ctrl + f `document.getElementById('dialog').innerText = str;` in the engine. you just switch that to `innerHTML` instead.
+
 
 ### building
 
