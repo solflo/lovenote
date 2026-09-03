@@ -116,7 +116,7 @@ div#buttons {
 
 /* viewport responsiveness might be a bit rough... improving it is an exercise to the reader */
 @media screen and (max-width: 640px) {
-    body {
+    body, #background, #script {
         max-width: 100%;
     }
     
