@@ -11,7 +11,7 @@ note scripts work perfectly in letter. the opposite might not be the case, and b
 
 - script goes in `script.txt`
 - images and audio go in their respective folders (or not, this isn't automated. organize as you will)
-- configuration is in `conf.js`
+- configuration is in `conf.js`. you can convert from `conf.lua` with [this script](https://github.com/solflo/loveletter/wiki/%5Bdistribution%5D-exporting-for-web-without-lovejs)
 - engine is `lovenote.js`. any fancier changes go there
 
 the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for vscodium / vscode obviously still works.
