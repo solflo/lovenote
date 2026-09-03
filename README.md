@@ -42,6 +42,7 @@ don't forget to put your game title in `index.html`. the game's visuals can be c
 ## playing
 
 - `enter`, `down arrow` and `left click` advance text
+- `up arrow` returns text
 - `f` toggles fullscreen
 - `m` mutes / unmutes
 
@@ -50,4 +51,7 @@ don't forget to put your game title in `index.html`. the game's visuals can be c
 
 love note feels hacky, even more so than letter, but with less moving parts i don't think there's anything too grave. you heard me right folks: right now there are no errors whatsoever. ☝ that i know of.
 
-that being said, with default css the sprite behavior is a little wretched when it comes to smaller viewports / responsiveness. it's a little wretched overall tbh.
+that being said:
+
+- with default css the sprite behavior is a little wretched when it comes to smaller viewports / responsiveness. it's a little wretched overall tbh.
+- text duplicates when switching "directions" with returning / advancing

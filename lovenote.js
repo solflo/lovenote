@@ -1,7 +1,7 @@
 // ________________________
 // ________________________
 // ___ LOVE NOTE ENGINE ___
-// ______________ v. 1.1 __
+// ______________ v. 1.2 __
 // ________________________
 
 // love note is a toy version of love letter. check the readme or https://solflo.neocities.org/etc/loveletter/lovenote.html for more info.
@@ -26,6 +26,8 @@ const SYNTAX = {
 
 //#region variables
 var currentLine = 0;
+var mostRecentLine = 0;
+var isReturning = false;
 var storyArray = [];
 var debugLogs = true;
 var isMuted = false;
@@ -121,6 +123,10 @@ function logKey(e) {
         progress();
     }
 
+    if (e.key == "ArrowUp") {
+        returnScript();
+    }
+
     if (e.key == "f") {
         let game = document.getElementById("note");
         // let game = document.documentElement; // complete fullscreen
@@ -157,6 +163,8 @@ function mute() {
 
 //#region progression
 function progress() {
+    isReturning = false;
+
     if (currentLine < storyArray.length) {
         let str = storyArray[currentLine]; 
         parseTags(str);
@@ -167,11 +175,34 @@ function progress() {
         sfxPlayer("stop");
     }
 };
+
+
+function returnScript() {
+    isReturning = true;
+
+    if (currentLine > 0 && currentLine > mostRecentLine) {
+        mostRecentLine = currentLine;
+    }
+
+    if (currentLine == 0) {
+        return;
+    } 
+
+    currentLine--;
+    let str = storyArray[currentLine];
+    parseTags(str);
+}
 //#endregion
 
 
 //#region syntax
 function parseTags(str) {
+
+    if (currentLine >= mostRecentLine) {
+        document.getElementById('dialog').classList.remove("old");
+    } else {
+        document.getElementById('dialog').classList.add("old");
+    }
 
     document.getElementById('dialog').classList.remove("dialog");
 
@@ -242,7 +273,10 @@ function parseTags(str) {
     }
     
     document.getElementById('dialog').innerText = str; // innerText sanitizes inputs. alt use innerHTML
-    currentLine++;
+
+    if (isReturning == false) {
+        currentLine++;
+    }
 };
 
 

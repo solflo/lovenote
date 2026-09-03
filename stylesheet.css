@@ -101,6 +101,10 @@ a {
 }
 
 
+.old {
+    opacity: 80%;
+}
+
 /* BUTTONS */
 button {
     font-size: 80%;
