@@ -184,7 +184,11 @@ function progress() {
 
 function rollback() {
 
-    if (isReturning == false) {
+    if (currentLine == 0) {
+        return
+    }
+
+    if (isReturning == false && currentLine > 1) {
         currentLine--;
     }
 
@@ -193,10 +197,6 @@ function rollback() {
     if (currentLine > 0 && currentLine > mostRecentLine) {
         mostRecentLine = currentLine;
     }
-
-    if (currentLine == 0) {
-        return;
-    } 
 
     currentLine--;
     let str = storyArray[currentLine];
