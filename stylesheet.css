@@ -81,11 +81,7 @@ div#buttons {
 }
 
 #sprite {
-    background-color: transparent;
-    background-repeat: no-repeat;
-
-    width: 250px;
-    height: 250px;
+    display: none;
 
     position: relative;
     top: 150px;

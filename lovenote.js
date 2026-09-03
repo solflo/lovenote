@@ -1,7 +1,7 @@
 // ________________________
 // ________________________
 // ___ LOVE NOTE ENGINE ___
-// ______________ v. 1.0 __
+// ______________ v. 1.1 __
 // ________________________
 
 // love note is a toy version of love letter. check the readme or https://solflo.neocities.org/etc/loveletter/lovenote.html for more info.
@@ -196,12 +196,16 @@ function parseTags(str) {
     if (SYNTAX.SPR.test(str) == true) { 
         let curSPR = str.replace(SYNTAX.SPR, "");
         let SPRtarget;
+        let SPRdisplay;
         if (curSPR == "hide") {
             SPRtarget = "";
+            SPRdisplay = "none";
         } else {
-            SPRtarget = "url('./" + IMGS[curSPR] +"')";
-        };        
-        document.getElementById('sprite').style.backgroundImage = SPRtarget;        
+            SPRtarget = "./" + IMGS[curSPR];
+            SPRdisplay = "block";
+        };
+        document.getElementById('sprite').src = SPRtarget;
+        document.getElementById('sprite').style.display = SPRdisplay;
         removeLine();
         return;
     }
