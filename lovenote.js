@@ -1,8 +1,8 @@
-// ________________________
-// ________________________
-// ___ LOVE NOTE ENGINE ___
-// ______________ v. 1.2 __
-// ________________________
+// ___________________________
+// ___________________________
+// ___ LOVE NOTE ENGINE ______
+// ______________ v. 1.2 _____
+// ___________________________
 
 // love note is a toy version of love letter. check the readme or https://solflo.neocities.org/etc/loveletter/lovenote.html for more info.
 // some code here is taken straight from freya campbell's [videotome](https://communistsister.itch.io/videotome). 
@@ -124,7 +124,7 @@ function logKey(e) {
     }
 
     if (e.key == "ArrowUp") {
-        returnScript();
+        rollback();
     }
 
     if (e.key == "f") {
@@ -182,7 +182,7 @@ function progress() {
 };
 
 
-function returnScript() {
+function rollback() {
 
     if (isReturning == false) {
         currentLine--;
