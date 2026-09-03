@@ -163,6 +163,11 @@ function mute() {
 
 //#region progression
 function progress() {
+
+    if (isReturning == true) {
+        currentLine++;
+    }
+
     isReturning = false;
 
     if (currentLine < storyArray.length) {
@@ -178,6 +183,11 @@ function progress() {
 
 
 function returnScript() {
+
+    if (isReturning == false) {
+        currentLine--;
+    }
+
     isReturning = true;
 
     if (currentLine > 0 && currentLine > mostRecentLine) {

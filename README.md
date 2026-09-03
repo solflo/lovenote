@@ -54,4 +54,3 @@ love note feels hacky, even more so than letter, but with less moving parts i do
 that being said:
 
 - with default css the sprite behavior is a little wretched when it comes to smaller viewports / responsiveness. it's a little wretched overall tbh.
-- text duplicates when switching "directions" with returning / advancing
