@@ -122,8 +122,8 @@ function logKey(e) {
     }
 
     if (e.key == "f") {
-        let game = document.getElementById("game"); // this looks a little goofy
-        // let game = document.documentElement;
+        let game = document.getElementById("note");
+        // let game = document.documentElement; // complete fullscreen
         toggleFullscreen(game);
     }
 
@@ -136,10 +136,10 @@ function logKey(e) {
 
 //#region meta controls
 // making these functions in case i also want a button or sth (for mobile)
-function toggleFullscreen(game) {
+function toggleFullscreen(element) {
   if (!document.fullscreenElement) {
     // If the document is not in full screen mode make it so
-    game.requestFullscreen();
+    element.requestFullscreen();
   } else {
     // Otherwise exit the full screen
     document.exitFullscreen?.();
@@ -179,7 +179,7 @@ function parseTags(str) {
         removeLine();
         return;
     }
-    
+
     if (SYNTAX.BG.test(str) == true) { 
         let curBG = str.replace(SYNTAX.BG, "");
         let BGtarget;
@@ -197,13 +197,16 @@ function parseTags(str) {
         let curSPR = str.replace(SYNTAX.SPR, "");
         let SPRtarget;
         let SPRdisplay;
-        if (curSPR == "hide") {
+
+        curSPR = curSPR.replaceAll(/ [x|y]\d+/g, "").trim(); // remove coordinates
+        SPRtarget = "./" + IMGS[curSPR];
+        SPRdisplay = "block";
+
+        if (curSPR == "hide" || IMGS[curSPR] == undefined) {
             SPRtarget = "";
             SPRdisplay = "none";
-        } else {
-            SPRtarget = "./" + IMGS[curSPR];
-            SPRdisplay = "block";
-        };
+        }
+
         document.getElementById('sprite').src = SPRtarget;
         document.getElementById('sprite').style.display = SPRdisplay;
         removeLine();

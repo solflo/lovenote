@@ -1,54 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>love note engine</title>
-  <link rel="stylesheet" href="./stylesheet.css">
-  <script src="./lovenote.js"></script>
-  <script src="./conf.js"></script>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>love note engine</title>
+		<link rel="stylesheet" href="./stylesheet.css">
+		<script src="./lovenote.js"></script>
+		<script src="./conf.js"></script>
+		
+		<noscript>
+			<style>
+				body {
+					font-size: 200%;
+					margin: 2em auto;
+				}
+				
+				a:hover {
+					filter: brightness(1.5);
+				}
+				
+				#note {
+					display: none;
+				}
+			</style>
+		</noscript>
+		
+	</head>
 
-  <noscript>
-    <style>
-      body {
-        font-size: 200%;
-        margin: 2em auto;
-      }
+	<body onload="readyStory()">
+		<noscript>this vn needs javascript to run. enable it to read, or <a href="../">go back</a>.</noscript>
 
-      a:hover {
-        filter: brightness(1.5);
-      }
+		<div id="note">
+		
+			<div id='game'>
+				
+				<div id="background">
+					<img id="sprite" src="">
+				</div>
+				
+				<div id="script">
+					<p id="dialog"><strong>love note engine</strong><br>[click], [space] or [arrow down] to advance.</p>
+				</div>
+			</div>
+			
+			<div id="buttons">
+				<button id="fullscreenButton" onclick="toggleFullscreen(game);">fullscreen</button>
+				<button id="muteButton" onclick="mute();">toggle audio</button>
+			</div>
 
-      #game, #buttons {
-        display: none;
-      }
-    </style>
-  </noscript>
-
-</head>
-
-<body id="body" onload="readyStory()">
-  <noscript>this vn needs javascript to run. enable it to read, or <a href="../">go back</a>.</noscript>
-
-  <div id='game'>
-      <div id="background">
-          <img id="sprite" src="">
-      </div>
-      <div id="script">
-          <p id="dialog"><strong>love note engine</strong><br>[click], [space] or [arrow down] to advance.</p>
-      </div>
-  </div>
-
-  <div id="buttons">
-    <button id="fullscreenButton" onclick="toggleFullscreen(game);">fullscreen</button>
-    <button id="muteButton" onclick="mute();">toggle audio</button>
-  </div>
-  
-  <script>
-    if (window.location.protocol.startsWith('file')) {
-      document.body.innerHTML = `love note must run on a server (local or online). check readme.md for more info.`
-    }
-  </script>
-</body>
+		</div>
+		
+		<script>
+			if (window.location.protocol.startsWith('file')) {
+				document.body.innerHTML = `love note must run on a server (local or online). check readme.md for more info.`
+			}
+		</script>
+	</body>
 
 </html>

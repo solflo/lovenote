@@ -4,7 +4,9 @@ love note is a toy visual novel engine, kinda reimplementing [love letter](https
 
 notes are also like 1mb lighter than letters built as html. in 2026 this is hardly relevant, but it's cute! plus every note is a straightforward redistribution of the engine, which isn't the case for games built with lovejs. also cute!
 
-note scripts work perfectly in letter. the opposite might not be the case, and bugs may be strange and arcane. proceed with caution. like the name implies, love note is meant for simpler and shorter vns. it might not be meant for use at all, honestly, but it was a fun exercise for me.
+note scripts work perfectly in letter. the opposite might not be the case (this should only be related to sprite positioning [^1], but who knows, bugs may be strange and arcane). proceed with caution. like the name implies, love note is meant for simpler and shorter vns.
+
+[^1]: love note lacks sprite positioning syntax. as of v1.1, the sprite will still display, but position will always be set to default.
 
 
 ## using
@@ -21,7 +23,7 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 
 - all commands are preceded by `!`, one command per line
 - `!BG name` displays an image at a fixed position. can be hidden with `!BG hide`
-- `!SPR name` (sprite) goes on top, at (possibly different) fixed position. can be hidden with `!SPR hide`
+- `!SPR name` (sprite) goes on top, at a (possibly different) fixed position. can be hidden with `!SPR hide`
 - `!MUS name` plays looping audio. can be stopped with `!MUS stop`
 - `!SFX name` plays audio once
 - `!name` prefixes the line with a nametag, and changes its color
@@ -47,3 +49,5 @@ don't forget to put your game title in `index.html`. the game's visuals can be c
 ## known errors
 
 love note feels hacky, even more so than letter, but with less moving parts i don't think there's anything too grave. you heard me right folks: right now there are no errors whatsoever. ☝ that i know of.
+
+that being said, with default css the sprite behavior is a little wretched when it comes to smaller viewports / responsiveness. it's a little wretched overall tbh.

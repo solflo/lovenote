@@ -7,26 +7,96 @@
 } */
 
 
-/* VARIABLES */
+/* SETTINGS */
+/* changing just these should be enough for most purposes! */
+/* you might also want to go allll the way down for the media queries if things look off on mobile */
 :root {
-    --w: 512px;
-    --bg: #373b44;
-    --color: #fff;
-    --accent: #9badb7;
+    --game-w: 640px;    /* width of page / game window */
+    --img-w: 512px;    /* width of game bgs */
+    --img-h: 300px;    /* height of game bgs */
+
+    --spr-x: 12%;    /* sprite horizontal position */
+    --spr-y: 53%;    /* sprite vertical position */
+
+    --page-bg: #373b44;    /* page background */
+    --game-bg: black;    /* game background */
+    --color: #fff;    /* text */
+    --accent: #9badb7;    /* dialog, also used for other accents */
+}
+
+/* i'm a dark-mode first person, feel free to switch lol */
+@media (prefers-color-scheme: light) {
+  :root {
+    --page-bg: #847e87;
+    --game-bg: #fff;
+    --color: #373b44;
+    --accent: #7c040f;
+  }
 }
 
 
 /* MAIN PAGE */
 body {
     margin: 1em auto;
-    width: 640px;
+    width: var(--game-w);
     max-width: 100%;
-    background: var(--bg);
+
+    background: var(--page-bg);
     color: var(--color);
+
     font-family: monospace;
 }
 
 a {
+    color: var(--accent);
+}
+
+
+/* GAME WINDOW */
+#game {
+    background: var(--game-bg);
+    border: 1px solid;
+
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 3em; /* x y  OR  top right bottom left */
+}
+
+
+/* GAME IMAGES */
+#background {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    width: var(--img-w);
+    max-width: 100%;
+    height: var(--img-h);
+
+    position: relative;
+}
+
+#sprite {
+    display: none;
+
+    position: absolute;
+    left: var(--spr-x);
+    top: var(--spr-y);
+}
+
+
+/* GAME TEXT */
+#script {
+    width: var(--img-w);
+    max-width: 100%;
+    height: 6em;
+}
+
+.dialog {
     color: var(--accent);
 }
 
@@ -55,68 +125,22 @@ div#buttons {
 }
 
 
-/* GAME WINDOW */
-#game {
-    background: black;
-    border: 1px solid;
-        
-    height: 400px;
-    max-width: 100%;
+/* MEDIA QUERIES FOR MOBILE */
+/* these might be a bit rough... improving it is an exercise to the reader */
+/* when in doubt avoid sprites. my final message */
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1em;
-}
-
-
-/* GAME IMAGES */
-#background {
-    background-color: transparent;
-    background-repeat: no-repeat;
-
-    width: var(--w);
-    max-width: 100%;
-    height: 300px;
-}
-
-#sprite {
-    display: none;
-
-    position: relative;
-    top: 150px;
-    left: 50px;
-}
-
-
-/* GAME TEXT */
-#script {
-    width: var(--w);
-    max-width: 100%;
-}
-
-.dialog {
-    color: var(--accent);
-}
-
-
-/* MEDIA QUERIES */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #847e87;
-    --color: #373b44;
-    --accent: #7c040f;
-  }
-
-  #game {
-    background: #fff;
-  }
-}
-
-
-/* viewport responsiveness might be a bit rough... improving it is an exercise to the reader */
 @media screen and (max-width: 640px) {    
     #game {
         padding: 0.5em;
+    }
+}
+
+@media screen and (max-height: 500px) {    
+    :root {
+        --img-h: 200px;
+    }
+
+    body {
+        margin: 0.25em auto;
     }
 }
