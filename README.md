@@ -29,7 +29,7 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 - `!name` prefixes the line with a nametag, and changes its color
 - `!--` comments out the line
 
-_images_ and _audio_ that haven't been defined in `conf.js` will simply not display. but if your _nametag_ hasn't been defined, it'll display as if it were `name` (verbatim) [^2].
+_images_ and _audio_ that haven't been defined in `conf.js` will simply not display. but if your _nametag_ hasn't been defined, it'll display as if it were `name` (verbatim) [^2]. all these cases will throw you a warning in the console.
 
 [^2]: this is slightly different to how love letter displays it. iirc letters will display the line as plaintext. shouldn't be an issue, but be careful. stay safe out there.
 
