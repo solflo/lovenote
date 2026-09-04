@@ -29,7 +29,9 @@ the [syntax highlighter](https://github.com/solflo/loveletter-highlighter) for v
 - `!name` prefixes the line with a nametag, and changes its color
 - `!--` comments out the line
 
-_images_ and _audio_ that haven't been defined in `conf.js` will simply not display. but if your _nametag_ hasn't been defined, it'll display as if it were `name` (verbatim). all these cases will throw you an error in the console.
+_images_ and _audio_ that haven't been defined in `conf.js` will simply not display. but if your _nametag_ hasn't been defined, it'll display as if it were `name` (verbatim) [^2].
+
+[^2]: this is slightly different to how love letter displays it. iirc letters will display the line as plaintext. shouldn't be an issue, but be careful. stay safe out there.
 
 love note sanitizes the script so inline html gets treated as normal text. this is so you don't have any problems when using things like \<lesser and greater than symbols\> (also helps with compatibility if using the script as letter!), but if you do wanna use those then ctrl + f `document.getElementById('dialog').innerText = str;` in the engine. you just switch from `innerText` to `innerHTML` (it's also commented over there).
 
