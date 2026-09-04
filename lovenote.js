@@ -228,6 +228,7 @@ function parseTags(str) {
             BGtarget = "";
         } else {
             BGtarget = "url('./" + IMGS[curBG] +"')";
+            if (debugLogs && !IMGS[curBG]) { console.warn("bg " + curBG + " is undefined. check conf.js") }
         };
         document.getElementById('background').style.backgroundImage = BGtarget;
         removeLine();
@@ -243,7 +244,8 @@ function parseTags(str) {
         SPRtarget = "./" + IMGS[curSPR];
         SPRdisplay = "block";
 
-        if (curSPR == "hide" || IMGS[curSPR] == undefined) {
+        if (curSPR == "hide" || !IMGS[curSPR]) {
+            if (debugLogs && !IMGS[curSPR]) { console.warn("sprite " + curSPR + " is undefined. check conf.js") }
             SPRtarget = "";
             SPRdisplay = "none";
         }
@@ -276,7 +278,7 @@ function parseTags(str) {
         chara = chara.trim();
 
         if (!CHARS[chara]) {
-            if (debugLogs) {console.warn("character " + nametag + "is undefined. check conf.js.")}
+            if (debugLogs) {console.warn("character " + nametag + " is undefined. check conf.js.")}
         } else {
             chara = CHARS[chara];
         }
