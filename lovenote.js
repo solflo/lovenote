@@ -1,7 +1,7 @@
 // ___________________________
 // ___________________________
 // ___ LOVE NOTE ENGINE ______
-// ______________ v. 1.2 _____
+// ______________ v. 1.2.1 ___
 // ___________________________
 
 // love note is a toy version of love letter. check the readme or https://solflo.neocities.org/etc/loveletter/lovenote.html for more info.
@@ -274,12 +274,15 @@ function parseTags(str) {
         let nametag = str.match(SYNTAX.CHAR)[0]; // the first instance of the match        
         let chara = nametag.replace(/^!/, ""); // grabs just the tag without !
         chara = chara.trim();
-        chara = CHARS[chara];
+
+        if (!CHARS[chara]) {
+            if (debugLogs) {console.warn("character " + nametag + "is undefined. check conf.js.")}
+        } else {
+            chara = CHARS[chara];
+        }
 
         str = str.replace(nametag, chara + DIVIDER);
         document.getElementById('dialog').classList.add("dialog");
-
-        // curiously nothing at all happens if the tag isn't in the CHARS object... not investigating.
     }
     
     document.getElementById('dialog').innerText = str; // innerText sanitizes inputs. alt use innerHTML
